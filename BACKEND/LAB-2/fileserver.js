@@ -1,56 +1,57 @@
-// make function one of reed file 2nd of update file 3rd function of delete file 4th function of create file
-const fs = require('fs');
+import fs from 'node:fs/promises';
+
+const filePath = 'userData.txt';
+
+// Function to create a file
+async function createFile(filePath, data) {
+    try {
+        await fs.writeFile(filePath, data, 'utf8');
+        console.log('File created successfully.');
+    } catch (err) {
+        console.error(`Error creating file: ${err.message}`);
+    }
+}
 
 // Function to read a file
-function readFile(filePath) {
-    fs.readFile(filePath, 'utf8', (err, data
-) => {
-        if (err) {
-            console.error(`Error reading file from disk: ${err}`);
-        } else {
-            console.log(`File content:\n${data}`);
-        }
-    });
+async function readFile(filePath) {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        console.log(`File content:\n${data}`);
+    } catch (err) {
+        console.error(`Error reading file from disk: ${err.message}`);
+    }
 }
 
 // Function to update a file
-function updateFile(filePath, newData) {
-    fs.writeFile(filePath, newData, 'utf8', (err) => {
-        if (err) {
-            console.error(`Error updating file: ${err}`);
-        }
-        else {
-            console.log(`File updated successfully.`);
-        }
-    });
+async function updateFile(filePath, newData) {
+    try {
+        await fs.writeFile(filePath, newData, 'utf8');
+        console.log('File updated successfully.');
+    } catch (err) {
+        console.error(`Error updating file: ${err.message}`);
+    }
 }
 
 // Function to delete a file
-function deleteFile(filePath) {
-    fs.unlink(filePath, (err) => {
-        if (err) {
-            console.error(`Error deleting file: ${err}`);
-        }
-
-        else {
-            console.log(`File deleted successfully.`);
-        }
-    });
-}
-
-// Function to create a file
-function createFile(filePath, data) {
-    fs.writeFile(filePath, data, 'utf8', (err) => {
-        if (err) {
-            console.error(`Error creating file: ${err}`);
-        }
-        else {
-            console.log(`File created successfully.`);
-        }
-    });
+async function deleteFile(filePath) {
+    try {
+        await fs.unlink(filePath);
+        console.log('File deleted successfully.');
+    } catch (err) {
+        console.error(`Error deleting file: ${err.message}`);
+    }
 }
 
 // Example usage
-const filePath = 'example.txt';
-const newData = 'This is the updated content of the file.';
-const dataToWrite = 'This is the content of the new file.';
+async function run() {
+    const initialData = 'This is the content of the new file.';
+    const updatedData = 'This is the updated content of the file.';
+
+    await createFile(filePath, initialData);
+    await readFile(filePath);
+    await updateFile(filePath, updatedData);
+    await readFile(filePath);
+    // await deleteFile(filePath); // Uncomment to test deletion
+}
+
+run();
