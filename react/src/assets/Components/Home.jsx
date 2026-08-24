@@ -1,6 +1,6 @@
 import React from 'react'
 import s1 from ".."
-const Home = () => {
+const home = () => {
     return (
         <div>
             <h2>Welcome to the Home Page</h2>

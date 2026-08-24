@@ -14,7 +14,11 @@ task.on("greet" ,()=> {
 task.on("exit", () => {
     console.log("Thank you for attending the session. Goodbye!");
 });
+task.on("start", (course) => {
+    console.log( "class has Started");
+});
 
-// Exit {Triggering the exit event}
-task.emit("greet", "Students")
+    // Exit {Triggering} the exit event
+task.emit("greet", "Students");
 task.emit("exit", "Session completed successfully.");
+task.emit("start" , "DSA");
