@@ -1,4 +1,4 @@
-console.log("starting the event loop...")
+jconsole.log("starting the event loop...")
 
 process.nextTick(() => {
     console.log("nextTick callback executed");
