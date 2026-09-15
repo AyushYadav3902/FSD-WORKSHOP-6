@@ -20,6 +20,24 @@ app.get("/msg",(req,res)=>{
 
 app.get("/users",(req,res)=>{
     res.status(200).json({
-        message : "Data go Recieved",
+        message : "Data got Recieved",
     });
+});
+
+app.post("/create",(req,res) =>{
+    const{id,name,email}= req.body;
+    const newuser = {
+        id,
+        name,
+        email
+    };
+    userData.push(newuser);
+    res.status(201).json({
+        message : "User created successfully",
+        user : newuser
+    });
+})
+
+app.listen(4000,()=>{
+    console.log("Server is running on port 4000");
 });
