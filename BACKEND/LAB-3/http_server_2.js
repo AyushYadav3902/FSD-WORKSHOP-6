@@ -19,6 +19,15 @@ const server=http.createServer((req,res)=>{
     else if (url =="/data" && method =="GET") {
         res.end(JSON.stringify(userdata)) ;
     }
+    else if(url.startsWith("/user") && method == "GET") {
+        const id = url.split("/")[2]; 
+        console.log("User ID:", id);
+        const user = userdata.find(u => u.id == id);
+        if (!user) {
+            return res.end("user not Found");
+        }
+        res.end(JSON.stringify(user));
+    }
 })
 server.listen(3000,()=>{
     console.log("Server is running on port number 3000");
