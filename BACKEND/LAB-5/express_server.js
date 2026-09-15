@@ -38,6 +38,18 @@ app.post("/create",(req,res) =>{
     });
 })
 
-app.listen(4000,()=>{
-    console.log("Server is running on port 4000");
+app.listen(3000,()=>{
+    console.log("Server is running on port 3000");
+});
+
+app.put("/edit/:id",(req,res) =>{
+    const { id } = req.params;
+    const userIndex = userData.findIndex((user) => user.id === parseInt(id));
+    if(userIndex === -1){
+        return res.status(404).json({ message : "User not found" });
+}
+
+const { name, email } = req.body;
+userData[userIndex] = { id: parseInt(id), name, email };
+res.status(200).json({ message : "User updated successfully", user : userData[userIndex] });
 });
