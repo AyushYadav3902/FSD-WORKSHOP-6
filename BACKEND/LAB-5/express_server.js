@@ -14,4 +14,12 @@ app.get("/",(req,res)=>{
 });
 app.get("/msg",(req,res)=>{
     res.status(200).json({
-        message : "This
+        message : "These are the user details",
+    });
+});
+
+app.get("/users",(req,res)=>{
+    res.status(200).json({
+        message : "Data go Recieved",
+    });
+});
