@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="createData()">Create JSON</button>
+
+<script>
+async function createData() {
+  const response = await fetch("http://localhost:3000/create", {
+    method: "POST"
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+  alert(data.message);
+}
+</script>
+
+</body>
+</html>
